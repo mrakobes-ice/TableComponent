@@ -1,0 +1,337 @@
+body{
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    font-size: 12px;
+    font-family: sans-serif;
+    overflow: hidden;
+}
+.text-center{
+    text-align: center !important;
+}
+.text-right{
+    text-align: right !important;
+}
+
+/* chrome container */
+.chrome{
+    position: absolute;
+    display: table;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1em;
+    border: 1px silver dashed;
+    min-width: 300px;
+    min-height: 250px;
+    /*outline: 1px solid silver;*/
+    /*outline-offset: -1em;*/
+}
+.chrome>.chrome-handle{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    background: white;
+}
+.chrome>.chrome-handle:nth-child(1){
+    top: -5px;
+    left: -5px;
+    cursor: se-resize;
+}
+.chrome>.chrome-handle:nth-child(2){
+    top: -5px;
+    right: -5px;
+    cursor: ne-resize;
+}
+.chrome>.chrome-handle:nth-child(3){
+    bottom: -5px;
+    left: -5px;
+    cursor: ne-resize;
+}
+.chrome>.chrome-handle:nth-child(4){
+    bottom: -5px;
+    right: -5px;
+    cursor: se-resize;
+}
+
+/* Table Component */
+.overflow-wrapper{
+    height: 100%;
+    position: relative;
+    overflow: auto;
+}
+
+.table-component{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.table-component>.toolbar{
+    padding: .5em .8em;
+}
+.table-component .toolbar-action{
+    border: 1px solid #d9d9d9;
+    color: #5a5959;
+    background: linear-gradient(90deg, #f5f5f5 30%, #f6f6f6, #f5f5f5 30%);
+    border-radius: 3px;
+    font-size: 1em;
+    padding: .25em .6em;
+    cursor: pointer;
+}
+.table-component .toolbar-action:hover{
+    background: linear-gradient(90deg, #dbdbdb 30%, #cccccc, #dbdbdb 30%);
+}
+.table-component .toolbar-action:not(:last-child){
+    margin-right: 1em;
+}
+.table-component table{
+    font-size: 1.1em;
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 480px;
+    min-height: 80px;
+    position: absolute;
+    overflow: hidden;
+}
+.table-component th,
+.table-component td{
+    text-align: left;
+    padding: .2em .8em;
+    position: relative;
+}
+.table-component th{
+    font-weight: normal;
+    color: gray;
+    border: 1px solid silver;
+    height: 3.4em !important;
+    position: relative;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.table-component th:not(:last-child){
+    cursor: all-scroll;
+}
+.table-component th>label{
+    cursor: all-scroll;
+}
+.table-component th:nth-last-child(2){
+    border-right: 0 none !important;
+}
+.table-component th:last-child{
+    border-left: 0 none !important;
+}
+
+.table-component th.resizable-left,
+.table-component th.resizable-right{
+    cursor: e-resize !important;
+}
+.table-component th.resizable-left::after{
+    content: '';
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: white;
+    width: 1px;
+    border-left: 2px solid gray;
+}
+.table-component th.resizable-left+th.resizable-right::after{
+    content: '';
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -1px;
+    border-right: 2px solid gray;
+    width: 2px;
+    background: white;
+}
+
+
+.table-component th.move{
+    z-index: 9999;
+    background: whitesmoke;
+    border-right: 1px solid silver !important;
+    opacity: .8;
+}
+.table-component th.move::before,
+.table-component th.move+th::before{
+    content: '';
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    border-left: 1px solid silver;
+    left: -1px;
+}
+.table-component th.move:first-child::before{
+    display: none;
+}
+.table-component th.move_target_left::after,
+.table-component th.move_target_right::after{
+    content: '';
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    border-left: 3px solid gray;
+}
+.table-component th.move_target_left:not(:first-child)::after{
+    left: -3px;
+}
+.table-component th.move_target_left:first-child::after{
+    left: -1px;
+}
+.table-component th.move_target_right:not(:first-child)::after{
+    right: -3px;
+}
+.table-component th.move_target_right:first-child::after{
+    right: -1px;
+}
+
+
+.table-component tr{
+    border-bottom: 1px solid silver;
+    position: relative;
+}
+.table-component th label.check-switcher{
+    text-align: center;
+    display: block;
+}
+.table-component th label.check-switcher .checkbox-chrome{
+    margin-top: .3em;
+}
+.table-component td.changed::before{
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    height: 0;
+    width: 0;
+    display: block;
+    border: 3.5px solid transparent;
+    border-right: 3.5px solid red;
+    transform: rotate(45deg);
+}
+.table-component tr a.table-row-action{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKjSURBVDhPHZL7T5JRHMb7+8olV7laE3iB9wWkIFtumss1pz9UW215abVcOn/wh7LVXDYlSxFCEV8FJHhBvOCFCQLK5eXydA6/nJ1993zOec55nlsAWkADqNbbO7KKImpl3BQgltGo00mTKtqyJgXqaLTIrNlEVUSp2AwF0p9n4nNTp4vzSO2jco1KjWrRIkoKNFBFixx52VxdDPQ7fA7dlkMVsMn9nMJn7+ZHh5D+h2oRLZGcSwGgjHIu+3XO57y/Z5HHLZK48Y7A3E6xnQlGGmK1K/1cLbgO8Zrc0QbEEnyrXiezbVXGWWnCKBFM0iQjSZg6UoaOmEmy47i3Meii9sRqG8ifRsaGQpyOZxVhm5K3KMOclqzktqhZsU82jOJvb09y9gNKVxSo7Pi8D7t3bAq/Q73aq//lNnrcxp/27jWXyWPr2XAYQqx606bdHO7H8QEFTn58CTi1vFWGbzMQtpEO4yiCozAOo0jHIOzlXw5ucSrvIxb7PAUySwsBRhXjNPB8x1UGhQsUzlA6QyGD4gVyR9fjIwFO43viQGSbAvm15d1eE2/oEsaeHn8cT09PpD69S85MCrMTwvTbk/evoo8ZYml9wI2DWPvRQnSrzxa16HiLKmTuCpnVIU5PTZNAWA15QMQiDzn1/hfDyGXaQLVwMPU6wOpjZnnaIksapYJJHjdJyIeSHBIWedgs+2PX5H4vonbTBkgih7HN531BTh5j7hJpklEIZlmC6YybOiJWacCp3nvzDPksqUcbgAixgHgwOOzy27XEBm9Vkxx2OVWQVXqdusTkKLIp1EVSQAqQGhJbaJRweZFZmPcMuJceMCtOw4qL8Y4MVDaWUc6TjImOKClAul2nDa7TYlequMkje4izJIrnuDqnVSdzUu8m6sB/Y5o/OPRYYa8AAAAASUVORK5CYII=');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.table-component input[type="checkbox"]{
+    display: none !important;
+}
+input[type="checkbox"]+.checkbox-chrome{
+    width: 0.8em;
+    height: 0.8em;
+    display: block;
+    border: 1px solid #9a9a9a;
+    margin: auto;
+    cursor: pointer;
+    position: relative;
+    background: white;
+    text-align: center;
+}
+input[type="checkbox"]:checked+.checkbox-chrome::before{
+    content: '✔';
+    line-height: 12px;
+    vertical-align: top;
+    font-size: .9em;
+    color: black;
+}
+
+.dialog{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000000e0;
+    z-index: 1000;
+}
+.dialog.active{
+    display: block;
+}
+.dialog .dialog-client{
+    background: whitesmoke;
+    border: gray;
+    width: 640px;
+    min-height: 280px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.dialog .dialog-client .title{
+    text-transform: uppercase;
+    margin-top: 0px;
+    text-align: center;
+    padding-bottom: .5em;
+    margin-bottom: 1em;
+    border-bottom: 1px solid silver;
+    color: #717171;
+}
+.dialog .dialog-client table{
+    width: 100%;
+    font-size: 1.3em;
+    margin-bottom: 1em;
+    height: 100%;
+}
+.dialog .dialog-client input,
+.dialog .dialog-client select{
+    font-size: inherit;
+    padding: .6em;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid silver;
+    outline: 0px none !important;
+}
+.dialog .dialog-client input[type="checkbox"]{
+    display: none;
+}
+.dialog .dialog-client input[type="checkbox"]+.checkbox-chrome{
+    margin-top: .85em;
+    margin-bottom: .85em;
+    margin-left: 0;
+}
+.dialog .dialog-client input[type="submit"]{
+    width: auto;
+    float: right;
+    padding: 1em 1.5em;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.dialog .dialog-client table td{
+    padding-bottom: 1em;
+}
+.dialog .dialog-client table td:first-child{
+    text-align: right;
+    padding-right: 2em;
+    width: 140px;
+}
+
+.dialog .dialog-client table td .currency{
+    padding: .6em 1em;
+    display: inline-block;
+    position: absolute;
+    margin-top: 1px;
+    margin-left: 1px;
+    background: #c6ff52;
+    border-right: 1px solid #aaea26;
+    color: #679c00;
+    font-weight: bold;
+}
+.dialog .dialog-client table td .currency+input{
+    padding-left: 3em !important;
+}

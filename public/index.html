@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="styles.css">
+    <title>React App</title>
+  </head>
+  <body>
+    <div id="root">
+      <div class="chrome" style="width: 711px; height: 215px;">
+        <div class="chrome-handle top-left"></div>
+        <div class="chrome-handle top-right"></div>
+        <div class="chrome-handle bottom-left"></div>
+        <div class="chrome-handle bottom-right"></div>
+
+        <div class="table-component">
+          <div class="toolbar">
+            <button class="toolbar-action">Добавить</button>
+          </div>
+          <table>
+            <col key="1" style="width:50%">
+            <col key="2" style="width:19%">
+            <col key="3" style="width:10%">
+            <col key="4" style="width:14%">
+            <col key="5" style="width:5%">
+            <thead>
+            <tr>
+              <th>Наименование</th>
+              <th>Цвет</th>
+              <th class="text-center">Цена</th>
+              <th>
+                <label class="check-switcher">
+                  Наличие
+                  <input type="checkbox"><span class="checkbox-chrome"></span>
+                </label>
+              </th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td class="changed">Lorem.</td>
+              <td>Синий</td>
+              <td class="text-right"><span class="currency">$</span>50</td>
+              <td class="text-center"><label><input type="checkbox"><span class="checkbox-chrome"></span></label></td>
+              <td><a href="javascript:void(0)" class="table-row-action"></a></td>
+            </tr>
+            <tr>
+              <td>Lorem.</td>
+              <td>Зеленый</td>
+              <td class="text-right"><span class="currency">$</span>210</td>
+              <td class="changed text-center"><label><input type="checkbox"><span class="checkbox-chrome"></span></label></td>
+              <td><a href="javascript:void(0)" class="table-row-action"></a></td>
+            </tr>
+            <tr>
+              <td>Lorem.</td>
+              <td class="changed">Желтый</td>
+              <td class="text-right"><span class="currency">$</span>12</td>
+              <td class="text-center"><label><input type="checkbox"><span class="checkbox-chrome"></span></label></td>
+              <td><a href="javascript:void(0)" class="table-row-action"></a></td>
+            </tr>
+            <tr>
+              <td>Lorem.</td>
+              <td class="changed">Оранжевый</td>
+              <td class="changed text-right"><span class="currency">$</span>50</td>
+              <td class="text-center"><label><input type="checkbox"><span class="checkbox-chrome"></span></label></td>
+              <td><a href="javascript:void(0)" class="table-row-action"></a></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="dialog">
+        <form class="dialog-client">
+          <h1 class="title"> Добавить / изменить </h1>
+          <table>
+            <tr>
+              <td><label for="field1">Наименование</label></td>
+              <td><input id="field1" type="text"></td>
+            </tr>
+            <tr>
+              <td><label for="field2">Цвет</label></td>
+              <td><input id="field2" type="text"></td>
+            </tr>
+            <tr>
+              <td><label for="field3">Цена</label></td>
+              <td><input id="field3" type="text"></td>
+            </tr>
+            <tr>
+              <td><label for="field4">Наличие</label></td>
+              <td><label><input type="checkbox" id="field4"><span class="checkbox-chrome"></span></label></td>
+            </tr>
+          </table>
+          <input type="submit" value="Сохранить">
+        </form>
+      </div>
+    </div>
+
+
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
