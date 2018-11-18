@@ -241,13 +241,13 @@ class TableComponent extends React.Component{
                     <table>
                         <TableColumnsSchema schema={this.props.columnSchema}/>
                         <TableHeadersRow schema={this.props.columnSchema} onColumnEdit={this.props.onColumnEdit.bind(this)}/>
-                        <TableRows {...this.props} onRecordEdit={function (row) {
+                        <TableRows {...this.props} onRecordEdit={(function (row) {
                             _dialog.current.show("Изменить запись", "Сохранить", {
                                 index: row,
                                 record: this.props.rows[ row ],
                                 schema: this.props.columnSchema
                             });
-                        }}/>
+                        }).bind(this)}/>
                     </table>
                 </div>
                 <FormDialogComponent ref={_dialog} onSubmit={this._formSubmit_handler.bind(this)}/>
